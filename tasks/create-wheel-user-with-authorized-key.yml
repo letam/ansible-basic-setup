@@ -1,0 +1,26 @@
+
+- name: Remove user
+  user:
+    name: "{{ item }}"
+    state: absent
+    remove: yes
+  with_items:
+    - user1
+
+- name: Add user with group sudo
+  user:
+    name: "{{ item }}"
+    shell: /bin/bash
+    groups: wheel
+    append: yes
+  with_items:
+    - user1
+
+- name: Set authorized key
+  authorized_key:
+    user: "{{ item }}"
+    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+    state: present
+  with_items:
+    - user1
+

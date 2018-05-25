@@ -1,0 +1,13 @@
+
+- name: Add 'wheel' group
+  group:
+    name: wheel
+    state: present
+
+- name: Add 'wheel' group to sudoers with NOPASSWD option
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^%wheel\s'
+    line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+

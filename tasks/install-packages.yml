@@ -1,0 +1,16 @@
+---
+
+- name: Update and upgrade apt packages
+  apt:
+    upgrade: dist
+    update_cache: yes
+    cache_valid_time: 3600  # 60 minutes
+
+- name: Install git
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - git
+

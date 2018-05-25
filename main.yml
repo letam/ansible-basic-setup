@@ -1,0 +1,9 @@
+
+---
+- hosts: all
+  remote_user: root
+  tasks:
+    - import_tasks: tasks/create-wheel-group-for-sudo-nopasswd.yml
+    - import_tasks: tasks/create-wheel-user-with-authorized-key.yml
+    - import_tasks: tasks/install-packages.yml
+
